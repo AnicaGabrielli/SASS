@@ -1,0 +1,112 @@
+// Nova paleta de cores mais equilibrada
+$primaria: #1E1E2E;
+$secundaria: #8CAAEE;
+$acentuada: #FAB387;
+$neutra: #9023cf;
+$texto: #050505;
+
+// Estilização dos botões com herança
+.button {
+    font-size: 16px;
+    border-radius: 8px;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &--green {
+        background-color: $secundaria;
+        &:hover {
+            background-color: darken($secundaria, 10%);
+        }
+    }
+    &--red {
+        background-color: $acentuada;
+        &:hover {
+            background-color: darken($acentuada, 10%);
+        }
+    }
+}
+
+// Mixins para reutilização de estilos
+@mixin tema($color: $secundaria) {
+    background-color: $color;
+    color: $texto;
+    padding: 20px;
+    text-align: justify;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.p1 {@include tema();}
+.p2 {@include tema($acentuada);}
+.p3 {@include tema($neutra);}
+
+// Estilização global
+body {
+    background-color: $primaria;
+    font-family: 'Inter', sans-serif;
+    color: $texto;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 100px;
+    background-color: $secundaria;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: $primaria;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    height: auto;
+    padding: 30px;
+    background-color: lighten($primaria, 10%);
+    color: $texto;
+    border-radius: 12px;
+    margin: 20px;
+}
+
+footer {
+    height: 100px;
+    background-color: $secundaria;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: $primaria;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+}
+
+// Aninhamento de seletores para melhor organização
+.principal {
+    div {
+        p {
+            background-color: lighten($primaria, 15%);
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            
+            &:hover {
+                color: $neutra;
+                font-size: larger;
+                background-color: darken($secundaria, 10%);
+            }
+        }
+    }
+}
+
+// Importação de módulos externos
+@import './header';
+@import './footer';
+@import './main';
